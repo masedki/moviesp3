@@ -10,6 +10,7 @@ from flask import Flask, render_template, redirect, request, url_for
 import os
 import json
 import pickle
+import pandas
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
