@@ -35,17 +35,11 @@ def reco_title(nom_film_input):
     
     
     print("Vous avez choisi le film" , nom_film)
-    #recommandation
     print("Nous vous recommandons aussi :")
     for k in reco.index:
         dico_reco["film id :" + str(reco.loc[k]["movie_id"])] = reco.loc[k]["movie_title"].replace("\xa0","")
     
     return(dico_reco)
-
-
-#reco_title("Avatar")
-
-
 
 def retjson(a):
     python2json = json.dumps(a)
@@ -56,20 +50,11 @@ comments = [""]
 @app.route('/' , methods=["GET" , "POST"])
 def index():
     if request.method == "GET":
-#        return render_template("main_page.html" , comments = Comment.query.all())
-
         return render_template("movie_main_page.html" , comments = comments )
 
-#    comment = Comment(content=request.form["contents"])
-#    db.session.add(comment)
-#    db.session.commit()
     a = str(request.form["contents"])
     b = reco_title(a)
-    comments[0] = b #request.form["contents"] + a
-#    comments
+    comments[0] = b 
     return retjson(b)
 if __name__ == "__main__":
     app.run()
-#comments = [""]
-
-#os.system("pause")
